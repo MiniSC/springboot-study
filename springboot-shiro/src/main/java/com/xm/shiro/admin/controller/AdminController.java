@@ -6,25 +6,29 @@ package com.xm.shiro.admin.controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.xm.shiro.admin.entity.URole;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 import com.xm.shiro.admin.dao.URoleDao;
 import com.xm.shiro.admin.entity.UUser;
-
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**   
@@ -35,7 +39,7 @@ import com.xm.shiro.admin.entity.UUser;
 * @date 2017年4月21日 下午5:51:36 
 * @version V1.0   
 */
-@RestController
+@Controller
 public class AdminController {
 	
 	 private static Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -43,17 +47,23 @@ public class AdminController {
     @Autowired
     private URoleDao uRoleDao;
 
-  //跳转到登录表单页面
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
-    
-    
+
+
+
+    @ExceptionHandler({UnauthorizedException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ModelAndView processUnauthenticatedException(NativeWebRequest request, UnauthorizedException e) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("exception", e);
+        mv.setViewName("unauthorized");
+        return mv;
+}
+
+
     @RequestMapping("/")
     public String index(Model model) {
         System.out.println("this is frame");
-        return "common/frame";
+        return "user/login1";
     }
 
 
@@ -64,7 +74,7 @@ public class AdminController {
     }
     
     //登陆验证，这里方便url测试，正式上线需要使用POST方式提交
-    @RequestMapping(value = "/ajaxLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/Login.do",method =RequestMethod.POST )
     public String index(UUser user) {
         if (user.getNickname() != null && user.getPswd() != null) {
             UsernamePasswordToken token = new UsernamePasswordToken(user.getNickname(), user.getPswd(), "login");
@@ -76,7 +86,8 @@ public class AdminController {
                 if (currentUser.isAuthenticated()) {
                     logger.info("用户[" + user.getNickname() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
                     System.out.println("用户[" + user.getNickname() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-                    return "redirect:/";
+                  // return "user/index";
+                    return "model/index";
                 } else {
                     token.clear();
                     System.out.println("用户[" + user.getNickname() + "]登录认证失败,重新登陆");
@@ -92,7 +103,7 @@ public class AdminController {
                 logger.error(ae.getMessage());
             }
         }
-        return "login";
+        return "model/index";
     }
     
     
