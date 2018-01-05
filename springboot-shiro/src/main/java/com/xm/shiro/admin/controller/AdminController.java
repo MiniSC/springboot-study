@@ -87,7 +87,7 @@ public class AdminController {
                     logger.info("用户[" + user.getNickname() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
                     System.out.println("用户[" + user.getNickname() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
                   // return "user/index";
-                    return "model/index";
+                    return "model/torisonPage";
                 } else {
                     token.clear();
                     System.out.println("用户[" + user.getNickname() + "]登录认证失败,重新登陆");
