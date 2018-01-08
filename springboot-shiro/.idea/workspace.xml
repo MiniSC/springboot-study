@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b7594d0-9225-4e02-accc-cde362be77e5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/nio/AsyncHandler.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resouces/data/data.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/springboot-shiro.iml" afterPath="$PROJECT_DIR$/springboot-shiro.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xm/shiro/admin/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xm/shiro/admin/controller/AdminController.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/xm/shiro/admin/controller/AdminController.class" afterPath="$PROJECT_DIR$/target/classes/com/xm/shiro/admin/controller/AdminController.class" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -462,12 +457,20 @@
       <option name="presentableId" value="Default" />
       <updated>1515115976844</updated>
       <workItem from="1515115979973" duration="12006000" />
-      <workItem from="1515373622837" duration="12369000" />
+      <workItem from="1515373622837" duration="12489000" />
     </task>
+    <task id="LOCAL-00001" summary="【问题描述】Asy...对消息队列的理解和异步处理&#10;【合入人员】董金杰&#10;【合入日期】2018.1.8">
+      <created>1515396323396</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1515396323397</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24375000" />
+    <option name="totallyTimeSpent" value="24495000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -549,6 +552,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="【问题描述】Asy...对消息队列的理解和异步处理&#10;【合入人员】董金杰&#10;【合入日期】2018.1.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="【问题描述】Asy...对消息队列的理解和异步处理&#10;【合入人员】董金杰&#10;【合入日期】2018.1.8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
