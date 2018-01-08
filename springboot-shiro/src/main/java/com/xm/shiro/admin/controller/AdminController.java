@@ -3,6 +3,8 @@ package com.xm.shiro.admin.controller;
 
 
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -63,6 +65,19 @@ public class AdminController {
     @RequestMapping("/")
     public String index(Model model) {
         System.out.println("this is frame");
+        String path =  AdminController.class.getClassLoader().getResource("data/data.xml").getPath();
+        String path2= AdminController.class.getResource("/").getPath();
+    /*    String path =System.getProperty("user.dir");
+        path.replace('\\','/');
+        path=path+"/src/main/resource/"+"data.xml";*/
+        try{
+            FileOutputStream  out = new FileOutputStream(new File(path));
+           out.write("test".getBytes());
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(path);
         return "user/login1";
     }
 
@@ -87,7 +102,7 @@ public class AdminController {
                     logger.info("用户[" + user.getNickname() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
                     System.out.println("用户[" + user.getNickname() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
                   // return "user/index";
-                    return "model/torisonPage";
+                    return "model/index";
                 } else {
                     token.clear();
                     System.out.println("用户[" + user.getNickname() + "]登录认证失败,重新登陆");
