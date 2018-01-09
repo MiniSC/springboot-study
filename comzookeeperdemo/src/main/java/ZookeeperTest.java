@@ -30,6 +30,11 @@ public class ZookeeperTest  {
         zooKeeper.delete(path, -1);
         //节点是否存在
         System.out.println(zooKeeper.exists(path, null));
+        /**
+         * 临时节点的创建
+         * PersistentEphemeraNode类代表临时节点
+         */
+
 
     }
 }
